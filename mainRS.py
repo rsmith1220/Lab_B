@@ -4,7 +4,10 @@ import postfix
 print("Ingrese una expresion: ")
 cadena = input()
 
-obj = postfix.Conversion(len(cadena))
+if cadena[-1]== '|' or cadena[-1]=='(' or cadena[-1]=='+' or cadena[-1]=='-':
+    print("cadena no puede usarse")
+else:
+    obj = postfix.Conversion(len(cadena))
 
-# Function call
-obj.infixToPostfix(cadena)
+    # Function call
+    obj.infixToPostfix(cadena)
