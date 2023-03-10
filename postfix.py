@@ -1,5 +1,5 @@
 class Conversion:
- 
+    
     # Constructor to initialize the class variables
     def __init__(self, capacity):
         self.top = -1
@@ -45,6 +45,7 @@ class Conversion:
  
     # funcion de infix a postfix
     def infixToPostfix(self, exp):
+        import ADF
  
         # Iterate sobre la expresion 
         for i in exp:
@@ -76,6 +77,8 @@ class Conversion:
         # pop 
         while not self.isEmpty():
             self.output.append(self.pop())
- 
+
+        
         print ("".join(self.output))
+        ADF.AFD("".join(self.output))
  
