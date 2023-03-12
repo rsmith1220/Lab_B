@@ -18,9 +18,33 @@ def minimizacion():
     initial_state=None
     accepting_states=None
 
+    transition_function={}
+
 
     #transition function from txt
-    
+    for line in contents.splitlines():
+        if "->" in line:
+            source, target = line.split(" -> ")
+            print(source )
+            
+            target = target.strip().split("[")[0].strip()
+
+            print(target)
+
+            label = line[line.find("[") + 1:line.find("]")]
+            if label != "":
+                label = label.replace("label=", "").strip()
+            print(label)
+
+            transition_function[source]={label:target}
+
+
+        elif "rankdir" in line:
+            pass  # Ignore the graph direction specification
+        elif "size" in line:
+            pass  # Ignore the graph size specification
+
+    print (transition_function)
 
 
 minimizacion()
