@@ -1,4 +1,3 @@
-import ADF
 import postfix
 
 print("Ingrese una expresion: ")
