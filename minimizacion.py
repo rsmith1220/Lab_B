@@ -14,8 +14,8 @@ def minimizacion():
     with open("process.txt", "r") as f:
         contents = f.read()
 
-    states={'','a0','a1','0'}
-    alphabet={'','a'}
+    states={''}
+    alphabet={''}
     initial_state=""
     accepting_states={}
 
@@ -29,10 +29,10 @@ def minimizacion():
             print(source )
 
             source = source.strip().split(' ')[0].strip()
-            # states[source]=None
+            states.add(source)
 
             target = target.strip().split("[")[0].strip()
-            # states[target]=None
+            states.add(target)
 
             print(target)
 
@@ -42,6 +42,7 @@ def minimizacion():
             print(label)
 
             # alphabet[label]=None
+            alphabet.add(label)
 
             transition_function[source]={label:target}
 
