@@ -14,9 +14,10 @@ def minimizacion():
     with open("process.txt", "r") as f:
         contents = f.read()
 
-    alphabet={'a0','a1','b0','b1','b2','c0','c1','c2','c3','d0','d1','d2','e0','0'}
-    initial_state=None
-    accepting_states=None
+    states={'','a0','a1','0'}
+    alphabet={'','a'}
+    initial_state=""
+    accepting_states={}
 
     transition_function={}
 
@@ -26,8 +27,12 @@ def minimizacion():
         if "->" in line:
             source, target = line.split(" -> ")
             print(source )
-            
+
+            source = source.strip().split(' ')[0].strip()
+            # states[source]=None
+
             target = target.strip().split("[")[0].strip()
+            # states[target]=None
 
             print(target)
 
@@ -35,6 +40,8 @@ def minimizacion():
             if label != "":
                 label = label.replace("label=", "").strip()
             print(label)
+
+            # alphabet[label]=None
 
             transition_function[source]={label:target}
 
@@ -44,7 +51,9 @@ def minimizacion():
         elif "size" in line:
             pass  # Ignore the graph size specification
 
-    print (transition_function)
-
+    dfa = SimpleDFA(states, alphabet, initial_state, accepting_states, transition_function)
+    # dfa_minimized = dfa.minimize()
+    graph = dfa.minimize().to_graphviz()
+    graph.render("path_to_file")
 
 minimizacion()
