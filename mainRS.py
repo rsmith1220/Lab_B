@@ -1,5 +1,5 @@
 import postfix
-import minimizacion
+# import minimizacion
 
 print("Ingrese una expresion: ")
 cadena = input()

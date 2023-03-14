@@ -1,4 +1,4 @@
-def minimizacion():
+def minimi():
     import graphviz
     import re
     from pythomata import SimpleDFA
@@ -57,4 +57,3 @@ def minimizacion():
     graph = dfa.minimize().to_graphviz()
     graph.render("path_to_file")
 
-minimizacion()
