@@ -1,7 +1,9 @@
 digraph finite_state_machine {
 	rankdir=LR size="8,5"
 	a0 -> 0 [label=a]
-	a0 -> a1 [label=a]
-	a1 -> a1 [label=a]
-	a1 -> 0 [label=a]
+	b0 -> b1 [label=a]
+	b0 -> b2 [label=b]
+	b2 -> b2 [label=b]
+	b0 -> 0 [label=a]
+	b2 -> 0 [label=a]
 }
