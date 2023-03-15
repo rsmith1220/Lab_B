@@ -56,8 +56,8 @@ def minimi(primero,ultimo):
     # dfa_minimized = dfa.minimize()
 
 
-    print("La cadena se acepta: ",dfa.accepts("bb"))
+    # print("La cadena se acepta: ",dfa.accepts("bb"))
     graph = dfa.minimize().to_graphviz()
     graph.render("path_to_file")
 
-minimi("a","b")
+minimi()

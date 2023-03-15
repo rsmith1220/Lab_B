@@ -1,5 +1,5 @@
 import graphviz
-import minimizacion
+# import minimizacion
 g = graphviz.Digraph('finite_state_machine', filename='process.gv')
 g.attr(rankdir='LR', size='8,5')
 
@@ -220,5 +220,5 @@ def AFD(postfix):
 
     g.view()
     print(ultimo)
-    minimizacion.minimi(primero,ultimo)
+    # minimizacion.minimi(primero,ultimo)
 

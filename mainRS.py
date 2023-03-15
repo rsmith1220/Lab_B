@@ -1,5 +1,6 @@
 import postfix
-import minimizacion
+# import minimizacion
+from AFN_AFD import *
 
 print("Ingrese una expresion: ")
 cadena = input()
@@ -25,4 +26,15 @@ obj = postfix.Conversion(len(cadena))
 obj.infixToPostfix(cadena)
 
 # minimizacion.minimi(cadena)
+
+
+nfaObj = NFAfromRegex(cadena)
+nfa = nfaObj.getNFA()
+dfaObj = DFAfromNFA(nfa)
+    # dfa = dfaObj.getDFA()
+    # minDFA = dfaObj.getMinimisedDFA()
+print ("\nNFA: ")
+nfaObj.displayNFA(0)
+print ("\nDFA: ")
+dfaObj.displayDFA(1)
 

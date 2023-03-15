@@ -65,7 +65,20 @@ class Automata:
                         states.add(tns)
         return allstates
 
-    def display(self):
+    def display(self,contador):
+        import graphviz
+        g = graphviz.Digraph('finite_state_machine', filename='process.gv')
+        g.attr(rankdir='LR', size='8,5')
+
+        def viewNFA(info):
+            graph=info.to_graphviz()
+            graph.render("NFA")
+        def viewDFA(info):
+            # import minimize
+            graph=info.to_graphviz()
+            # minimize.mini(info)
+            graph.render("DFA")
+
         transitions=set()
         print ("states:", self.states)
         print ("start state: ", self.startstate)
@@ -93,21 +106,21 @@ class Automata:
                     transitions.add(char)
                     
                     
-            print()
-        """ print("Aqui empieza")
-        print(type(str_set), str_set)
-        print(type(language), language)
-        print(type(startstate), startstate)
-        print(type(finalstates), finalstates)
-        print(type(camino), camino) """
+
 
         finalstates = set(str(state) for state in self.finalstates)
-
-        
-
         dfa = SimpleDFA(str_set, language, startstate, finalstates, camino)
-        graph=dfa.to_graphviz()
-        graph.render("DFA")
+
+        if contador == 0:
+            # print("Aqui va AFN, NFA")
+            viewNFA(dfa)
+
+        else:
+            # print("Aqui va AFD, DFA")
+            viewDFA(dfa)
+
+        # graph=dfa.to_graphviz()
+        # graph.render("DFA")
 
     def getPrintText(self):
         text = "language: {" + ", ".join(self.language) + "}\n"
@@ -247,8 +260,8 @@ class DFAfromNFA:
     # def getMinimisedDFA(self):
     #     return self.minDFA
 
-    def displayDFA(self):
-        self.dfa.display()
+    def displayDFA(self,count):
+        self.dfa.display(count)
 
     def displayMinimisedDFA(self):
         self.minDFA.display()
@@ -322,8 +335,8 @@ class NFAfromRegex:
     def getNFA(self):
         return self.nfa
 
-    def displayNFA(self):
-        self.nfa.display()
+    def displayNFA(self,count):
+        self.nfa.display(count)
 
     def buildNFA(self):
         language = set()
