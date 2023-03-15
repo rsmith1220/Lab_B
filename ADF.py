@@ -1,4 +1,5 @@
 import graphviz
+import minimizacion
 g = graphviz.Digraph('finite_state_machine', filename='process.gv')
 g.attr(rankdir='LR', size='8,5')
 
@@ -14,9 +15,9 @@ def AFD(postfix):
     tokens=[]
 
     completo=[]
-
+    primero=''
     verificar = 0
-
+    
 
     jelly = 0
     contar = len(labels)
@@ -29,7 +30,14 @@ def AFD(postfix):
         else:
             completo.append(token)
         
-    
+    if labels[0] == '*':
+        primero = 'a0'
+    elif labels[0] == "|":
+        primero = 'b0'
+    elif labels[0] == '+':
+        primero= 'c0'
+    elif labels[0] == '?':
+        primero = 'd0'
 
     while contar < 1:
         try:
@@ -211,5 +219,6 @@ def AFD(postfix):
             jelly+=1
 
     g.view()
-
+    print(ultimo)
+    minimizacion.minimi(primero,ultimo)
 

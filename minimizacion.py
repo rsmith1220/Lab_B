@@ -1,4 +1,4 @@
-def minimi():
+def minimi(primero,ultimo):
     import graphviz
     import re
     from pythomata import SimpleDFA
@@ -16,7 +16,7 @@ def minimi():
 
     states={''}
     alphabet={''}
-    initial_state=""
+    initial_state=primero
     accepting_states={}
 
     transition_function={}
@@ -26,7 +26,7 @@ def minimi():
     for line in contents.splitlines():
         if "->" in line:
             source, target = line.split(" -> ")
-            print(source )
+            # print(source )
 
             source = source.strip().split(' ')[0].strip()
             states.add(source)
@@ -34,12 +34,12 @@ def minimi():
             target = target.strip().split("[")[0].strip()
             states.add(target)
 
-            print(target)
+            # print(target)
 
             label = line[line.find("[") + 1:line.find("]")]
             if label != "":
                 label = label.replace("label=", "").strip()
-            print(label)
+            # print(label)
 
             # alphabet[label]=None
             alphabet.add(label)
@@ -54,6 +54,10 @@ def minimi():
 
     dfa = SimpleDFA(states, alphabet, initial_state, accepting_states, transition_function)
     # dfa_minimized = dfa.minimize()
+
+
+    print("La cadena se acepta: ",dfa.accepts("bb"))
     graph = dfa.minimize().to_graphviz()
     graph.render("path_to_file")
 
+minimi("a","b")

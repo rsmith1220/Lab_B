@@ -1,5 +1,5 @@
 import postfix
-# import minimizacion
+import minimizacion
 
 print("Ingrese una expresion: ")
 cadena = input()
@@ -23,4 +23,6 @@ obj = postfix.Conversion(len(cadena))
 
 # Function call
 obj.infixToPostfix(cadena)
+
+# minimizacion.minimi(cadena)
 
