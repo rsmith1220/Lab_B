@@ -5,7 +5,7 @@ from AFN_AFD import *
 print("Ingrese una expresion: ")
 cadena = input()
 
-acepta = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z','1','2','3','4','5','6','7','8','9','*','+','|','?','(',')']
+acepta = ['ε','a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z','1','2','3','4','5','6','7','8','9','*','+','|','?','(',')']
 
 for token in cadena:
     if token not in acepta:
@@ -33,8 +33,8 @@ nfa = nfaObj.getNFA()
 dfaObj = DFAfromNFA(nfa)
     # dfa = dfaObj.getDFA()
     # minDFA = dfaObj.getMinimisedDFA()
-print ("\nNFA: ")
+
 nfaObj.displayNFA(0)
-print ("\nDFA: ")
+
 dfaObj.displayDFA(1)
 

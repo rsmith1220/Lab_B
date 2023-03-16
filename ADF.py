@@ -1,5 +1,5 @@
 import graphviz
-# import minimizacion
+
 g = graphviz.Digraph('finite_state_machine', filename='process.gv')
 g.attr(rankdir='LR', size='8,5')
 
@@ -9,7 +9,7 @@ g.attr(rankdir='LR', size='8,5')
 
 def AFD(postfix):
 
-    acepta = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z','1','2','3','4','5','6','7','8','9']
+    acepta = ['ε','a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z','1','2','3','4','5','6','7','8','9']
     labels = []
     letras =[]
     tokens=[]
@@ -219,6 +219,7 @@ def AFD(postfix):
             jelly+=1
 
     g.view()
-    print(ultimo)
-    # minimizacion.minimi(primero,ultimo)
+    import minimizacion
+    # print(ultimo)
+    minimizacion.minimi(primero,ultimo)
 

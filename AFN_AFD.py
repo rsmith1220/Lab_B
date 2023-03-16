@@ -80,10 +80,10 @@ class Automata:
             graph.render("DFA")
 
         transitions=set()
-        print ("states:", self.states)
-        print ("start state: ", self.startstate)
-        print ("final states:", self.finalstates)
-        print ("transitions:")
+        # print ("states:", self.states)
+        # print ("start state: ", self.startstate)
+        # print ("final states:", self.finalstates)
+        # print ("transitions:")
         states = self.states
         str_set = {str(item) for item in states}
 
@@ -99,7 +99,7 @@ class Automata:
         for fromstate, tostates in self.transitions.items():
             for state in tostates:
                 for char in tostates[state]:
-                    print ("  ",fromstate, "->", state, "on '"+char+"'")
+                    # print ("  ",fromstate, "->", state, "on '"+char+"'")
                     #ARREGLAR
                     camino[str(fromstate)]={str(char):str(state)}
                     str(char)

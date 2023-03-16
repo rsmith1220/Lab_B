@@ -2,6 +2,8 @@ def minimi(primero,ultimo):
     import graphviz
     import re
     from pythomata import SimpleDFA
+    # from determinar import DFA
+    import pydot
 
 
     graph = graphviz.Source.from_file("process.gv")
@@ -14,10 +16,9 @@ def minimi(primero,ultimo):
     with open("process.txt", "r") as f:
         contents = f.read()
 
-    states={''}
-    alphabet={''}
-    initial_state=primero
-    accepting_states={}
+    states=set()
+    alphabet=set()
+    accepting_states=set()
 
     transition_function={}
 
@@ -46,18 +47,53 @@ def minimi(primero,ultimo):
 
             transition_function[source]={label:target}
 
+    with open('process.txt', 'r') as file:
+        dot_file = file.read()
+    graph = pydot.graph_from_dot_data(dot_file)[0]
+
+    # Get the first state
+    first_state = None
+    for edge in graph.get_edges():
+        source = edge.get_source()
+        target = edge.get_destination()
+        if not any(e for e in graph.get_edges() if e.get_destination() == source):
+            first_state = source
+
+            break
+
+    # Get the last state
+    last_state = None
+    for edge in graph.get_edges():
+        source = edge.get_source()
+        target = edge.get_destination()
+        if not any(e for e in graph.get_edges() if e.get_source() == target):
+            last_state = target
+            accepting_states.add(str(last_state))
+            break
+
+
 
         elif "rankdir" in line:
             pass  # Ignore the graph direction specification
         elif "size" in line:
             pass  # Ignore the graph size specification
 
-    dfa = SimpleDFA(states, alphabet, initial_state, accepting_states, transition_function)
-    # dfa_minimized = dfa.minimize()
+    dfa = SimpleDFA(states, alphabet, str(first_state), accepting_states, transition_function)
+    cadena=input("Ingrese cadena para revisar: ")
+    # print(states)
+    # print(alphabet)
+    # print(first_state)
+    # print(accepting_states)
 
 
-    # print("La cadena se acepta: ",dfa.accepts("bb"))
-    graph = dfa.minimize().to_graphviz()
-    graph.render("path_to_file")
+    print("La cadena es aceptada (AFD) : ",dfa.accepts(cadena))
+    
+    graph = dfa.minimize().trim().to_graphviz()
+    graph.render("AFD_mini")
+    
+    # dfa = DFA(states, alphabet, transition_function, 'c0', 'c3')
 
-minimi()
+    """ # Call the run method on an input string
+    input_str = 'aab'
+    result = dfa.run(input_str)
+    print(result) """
