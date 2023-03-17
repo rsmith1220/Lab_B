@@ -21,20 +21,20 @@ for token in cadena:
         
 
 obj = postfix.Conversion(len(cadena))
-
 # Function call
 obj.infixToPostfix(cadena)
 
-# minimizacion.minimi(cadena)
+try:
 
+    nfaObj = NFAfromRegex(cadena)
+    nfa = nfaObj.getNFA()
+    dfaObj = DFAfromNFA(nfa)
+        # dfa = dfaObj.getDFA()
+        # minDFA = dfaObj.getMinimisedDFA()
 
-nfaObj = NFAfromRegex(cadena)
-nfa = nfaObj.getNFA()
-dfaObj = DFAfromNFA(nfa)
-    # dfa = dfaObj.getDFA()
-    # minDFA = dfaObj.getMinimisedDFA()
+    nfaObj.displayNFA(0)
 
-nfaObj.displayNFA(0)
-
-dfaObj.displayDFA(1)
+    dfaObj.displayDFA(1)
+except:
+    print("Cadena compleja")
 

@@ -2,7 +2,7 @@ def minimi(primero,ultimo):
     import graphviz
     import re
     from pythomata import SimpleDFA
-    # from determinar import DFA
+    import determinar
     import pydot
 
 
@@ -91,9 +91,4 @@ def minimi(primero,ultimo):
     graph = dfa.minimize().trim().to_graphviz()
     graph.render("AFD_mini")
     
-    # dfa = DFA(states, alphabet, transition_function, 'c0', 'c3')
-
-    """ # Call the run method on an input string
-    input_str = 'aab'
-    result = dfa.run(input_str)
-    print(result) """
+    determinar.revisar()
