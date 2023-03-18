@@ -150,6 +150,13 @@ def AFD(postfix):
                         g.edge('a0','a1',label=nombre)
                         g.edge('a1','a1',label=nombre)
                         ultimo = 'a1'
+                elif otro =="|":
+                    otro = labels.pop()
+                    g.edge('b0','b2',label=otro)
+                    g.edge('b0','b3',label=nombre)
+                    extra= labels.pop()
+                    g.edge('b0','b1',label=extra)
+            
             else:
                 pass
 
@@ -186,6 +193,24 @@ def AFD(postfix):
                         ultimo = 'a1'
                     else:
                         pass
+                
+                elif otro == '|':
+                    otro=labels.pop()
+                    if otro in acepta:
+                        extra=labels.pop()
+                        g.edge('b0','c1',label=extra)
+                        g.edge('b0','b2',label=nombre)
+                        ultimo = 'b2'
+                        mas=otro
+                        otro=extra
+                    if otro in acepta:
+                        # g.edge('c0','c1',label=otro)
+                        g.edge('c1','c2',label=otro)
+                        g.edge('c1','c3',label=mas)
+                        g.edge('c2','c2',label=otro)
+                        g.edge('c2','c3',label=mas)
+                        ultimo = 'c3'
+                
                 else:
                     pass
 
